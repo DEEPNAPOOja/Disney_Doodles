@@ -4,7 +4,18 @@ import { View, Text, Image, StyleSheet } from "react-native";
 const RectCard = ({ title, content, image, status }) => {
   return (
     <View style={styles.card}>
-      {image && <Image source={{ uri: image }} style={styles.image} />}
+      {image ? (
+        <Image
+          source={{ uri: image }}
+          style={styles.image}
+          onError={(e) => console.error("Image load error:", e.nativeEvent.error)} // Handle image loading errors
+        />
+      ) : (
+        <Image
+          source={{ uri: "https://via.placeholder.com/150" }} // Fallback image
+          style={styles.image}
+        />
+      )}
       {status && <Text style={styles.status}>{status}</Text>}
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.content}>{content}</Text>
@@ -14,11 +25,10 @@ const RectCard = ({ title, content, image, status }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#FFF8E7", // Cream White for the card background
-    borderRadius: 10,
+    backgroundColor: "#fff",
+    borderRadius: 8,
     padding: 16,
-    marginTop: 10,
-    marginVertical: 8,
+    marginVertical: 4,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 8,
@@ -33,19 +43,18 @@ const styles = StyleSheet.create({
   },
   status: {
     fontSize: 14,
-    color: "#FFD700", // Golden Yellow for status
+    color: "#2f6a39",
     fontWeight: "bold",
     marginBottom: 4,
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#FF0000", // Mickey Red for the title
     marginBottom: 4,
   },
   content: {
     fontSize: 14,
-    color: "#333", // Black text color for content
+    color: "#333",
   },
 });
 

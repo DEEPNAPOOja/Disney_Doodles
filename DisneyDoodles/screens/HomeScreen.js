@@ -13,7 +13,7 @@ const HomeScreen = ({ route }) => {
   // Fetch Disney characters
   const fetchCharacters = async () => {
     try {
-      const response = await axios.get("https://disneyapi.dev/"); // Disney API
+      const response = await axios.get("https://api.disneyapi.dev/character");
       const data = response.data.data.map((character) => ({
         id: character._id,
         name: character.name,
@@ -31,18 +31,21 @@ const HomeScreen = ({ route }) => {
   // Refresh characters when button is pressed
   const handleRefreshCharacters = () => {
     incrementClick();
-    fetchCharacters(); // Fetch Disney characters again
+    fetchCharacters();
   };
 
   // Render each character
-  const renderItem = ({ item }) => (
-    <RectCard
-      title={item.name}
-      content={`Films: ${item.films.join(", ")}\nTV Shows: ${item.tvShows.join(", ")}`}
-      image={item.imageUrl}
-      status="Available" // Modify according to status if applicable
-    />
-  );
+  const renderItem = ({ item }) => {
+    console.log("Character Image URL:", item.imageUrl); // Debugging log
+    return (
+      <RectCard
+        title={item.name}
+        content={`Films: ${item.films.join(", ")}\nTV Shows: ${item.tvShows.join(", ")}`}
+        image={item.imageUrl}
+        status="Available"
+      />
+    );
+  };
 
   useEffect(() => {
     fetchCharacters(); // Initial load of Disney characters
@@ -56,7 +59,7 @@ const HomeScreen = ({ route }) => {
       <FlatList
         data={characters}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         style={styles.list}
       />
       <View style={styles.clickCountContainer}>
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#e6ffe6", // Background color
+    backgroundColor: "#FFF8E7",
   },
   welcomeTitle: {
     marginTop: 8,

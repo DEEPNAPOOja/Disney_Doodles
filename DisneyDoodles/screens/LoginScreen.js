@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: '#FFF8E7', 
+    backgroundColor: '#FFF8E7',
   },
   title: {
     fontSize: 32,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   errorText: {
-    color: '#FF0000', 
+    color: '#FF0000',
     fontSize: 12,
     marginTop: 1,
     textAlign: 'left',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   linkText: {
-    color: '#FF0000', 
+    color: '#FF0000',
     fontSize: 14,
     textDecorationLine: 'underline',
   },
